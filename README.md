@@ -83,7 +83,7 @@ somewhere and hope nothing breaks.
 
 1. clone this repository
 2. run `setup.sh`
-2.1. if you don't have the virtualenv bash trick from above installed, you'll
+3. if you don't have the virtualenv bash trick from above installed, you'll
     want to run `source env/bin/activate` now.
-3. run `django-admin.py startproject <some awesome name here>`
-4. fix your `setup.sh` script's PROJECT variable to ^
+4. run `django-admin.py startproject <some awesome name here>`
+5. fix your `setup.sh` script's PROJECT variable to ^
