@@ -7,6 +7,7 @@ PROJECT="toolbelt"
 # This script initializes things
 #
 
+
 # setup virtual env
 echo "Setting up virtual environment (env)"
 virtualenv --no-site-packages env
@@ -32,12 +33,20 @@ if [ ! -f $PROJECT/$PROJECT/local_settings.py ]; then
         # local settings import, insert secret key generator
 echo "
 
-import local_settings
+# Typically this ends up a symlink on prod boxes
+STATIC_ROOT = os.path.join(BASE_DIR, '../../static')
+
+MEDIA_URL = '/media/'
+
+# Typically this ends up a symlink on prod boxes
+MEDIA_ROOT = os.path.join(BASE_DIR, '../../media')
+
+from local_settings import *
 
 try:
     SECRET_KEY
 except NameError:
-    SECRET_FILE = os.path.join(APPS_PATH, '../../secret.txt')
+    SECRET_FILE = os.path.join(BASE_DIR, '../../secret.txt')
     try:
         SECRET_KEY = open(SECRET_FILE).read().strip()
     except IOError:
@@ -50,6 +59,29 @@ except NameError:
         except IOError:
             Exception('Please create a %s file with random characters \
             to generate your secret key!' % SECRET_FILE)" >> $PROJECT/$PROJECT/settings.py
+
+            # pimp out urls
+            sed -i '' '/from\ django\.contrib\ import\ admin/a \
+from django.conf.urls.static import static
+' $PROJECT/$PROJECT/urls.py
+            sed -i '' '/from\ django\.conf\.urls\.static\ import\ static/a \
+import settings
+' $PROJECT/$PROJECT/urls.py
+            sed -i '' '/^)$/ s/$/ \+\ static(settings.MEDIA_URL,\ document_root\=settings\.MEDIA_ROOT)/' $PROJECT/$PROJECT/urls.py
+
+            # create a sensible default local settings template
+            echo "# keep only the absolute minimum in this file."  >> $PROJECT/$PROJECT/local_settings-template.py
+            cp $PROJECT/$PROJECT/local_settings-template.py $PROJECT/$PROJECT/local_settings.py
+
+            while true; do
+                read -p "Should I run a syncdb for you? [Y/n]" yn
+                case $yn in
+                    ""*) $PROJECT/manage.py syncdb; break;;
+                    [Yy]* ) $PROJECT/manage.py syncdb; break;;
+                    [Nn]* ) exit;;
+                    * ) echo "Please answer yes or no.";;
+                esac
+            done
     else
         echo "
 Copying local settings template
@@ -58,3 +90,14 @@ Copying local settings template
     fi
 fi
 
+echo
+
+while true; do
+    read -p "May I start a development server for you? [Y/n]" yn
+    case $yn in
+        ""*) $PROJECT/manage.py runserver; break;;
+        [Yy]* ) $PROJECT/manage.py runserver; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done

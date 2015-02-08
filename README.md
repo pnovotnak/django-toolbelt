@@ -82,8 +82,6 @@ somewhere and hope nothing breaks.
 ## Getting Started
 
 1. clone this repository
-2. run `setup.sh`
-3. if you don't have the virtualenv bash trick from above installed, you'll
-    want to run `source env/bin/activate` now.
-4. run `django-admin.py startproject <some awesome name here>`
-5. update your `setup.sh` script's PROJECT variable to ^
+2. update your `setup.sh` script's PROJECT variable to ^
+3. run `setup.sh`
+4. change your git remote to something else, dammit.
