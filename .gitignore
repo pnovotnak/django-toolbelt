@@ -1,0 +1,15 @@
+
+# Compiled Python files
+*.pyc
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Python environment
+env/
+
+# Local settings file
+local_settings.py
+
