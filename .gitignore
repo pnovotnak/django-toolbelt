@@ -1,6 +1,9 @@
 # System cruft
 .DS_Store
 
+# IDE files
+.idea/
+
 # Compiled Python file(s)
 *.pyc
 

@@ -29,8 +29,11 @@ if [ ! -f $PROJECT/$PROJECT/local_settings.py ]; then
         # set Debug = False by default
         sed -i '' 's/Debug\ \=\ True/Debug\ \=\ False/' toolbelt/toolbelt/settings.py
 
-        # insert secret key generator
+        # local settings import, insert secret key generator
 echo "
+
+import local_settings
+
 try:
     SECRET_KEY
 except NameError:
@@ -47,10 +50,11 @@ except NameError:
         except IOError:
             Exception('Please create a %s file with random characters \
             to generate your secret key!' % SECRET_FILE)" >> $PROJECT/$PROJECT/settings.py
-    fi
-    echo "
-Copying default local setting
+    else
+        echo "
+Copying local settings template
 "
-    cp $PROJECT/$PROJECT/local_settings-template.py $PROJECT/$PROJECT/local_settings.py
+        cp $PROJECT/$PROJECT/local_settings-template.py $PROJECT/$PROJECT/local_settings.py
+    fi
 fi
 
