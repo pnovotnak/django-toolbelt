@@ -28,7 +28,7 @@ if [ ! -f $PROJECT/$PROJECT/local_settings.py ]; then
         sed -i '' '/SECRET_KEY/d' toolbelt/toolbelt/settings.py
 
         # set Debug = False by default
-        sed -i '' 's/Debug\ \=\ True/Debug\ \=\ False/' toolbelt/toolbelt/settings.py
+        sed -i '' 's/DEBUG\ \=\ True/DEBUG\ \=\ False/' toolbelt/toolbelt/settings.py
 
         # local settings import, insert secret key generator
 echo "
@@ -70,7 +70,10 @@ import settings
             sed -i '' '/^)$/ s/$/ \+\ static(settings.MEDIA_URL,\ document_root\=settings\.MEDIA_ROOT)/' $PROJECT/$PROJECT/urls.py
 
             # create a sensible default local settings template
-            echo "# keep only the absolute minimum in this file."  >> $PROJECT/$PROJECT/local_settings-template.py
+            echo "# keep only the absolute minimum in this file.
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG"  >> $PROJECT/$PROJECT/local_settings-template.py
             cp $PROJECT/$PROJECT/local_settings-template.py $PROJECT/$PROJECT/local_settings.py
 
             while true; do
