@@ -110,3 +110,6 @@ it's ideal to have a bash function in your .bashrc that reads something like...
         ./setup.sh
     }
 
+Then, by typing `django <project folder>` you get a whole Django project set up
+for you in short order.
+
