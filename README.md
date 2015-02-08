@@ -2,7 +2,7 @@
 
 This repository keeps all of my Django tricks in one place.
 
-It's just a little bit of kit I've established that I like.
+It's just a little bit of kit that makes me a wee bit faster.
 
 ## Preliminary Steps
 
