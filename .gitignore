@@ -1,8 +1,10 @@
+# System cruft
+.DS_Store
 
-# Compiled Python files
+# Compiled Python file(s)
 *.pyc
 
-# Database files
+# Database file(s)
 *.db
 *.sqlite
 *.sqlite3
@@ -10,6 +12,6 @@
 # Python environment
 env/
 
-# Local settings file
+# Local settings file(s)
 local_settings.py
 
