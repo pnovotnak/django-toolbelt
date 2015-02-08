@@ -25,7 +25,7 @@ fi
 if [ ! -f $PROJECT/$PROJECT/local_settings.py ]; then
     if [ ! -f $PROJECT/$PROJECT/local_settings-template.py ]; then
         # remove secret key from settings
-        sed -i '' '/SECRET_KEY/d' toolbelt/toolbelt/settings.py
+        sed -i '' '/SECRET_KEY/d' $PROJECT/$PROJECT/settings.py
 
         # set Debug = False by default
         sed -i '' 's/DEBUG\ \=\ True/DEBUG\ \=\ False/' $PROJECT/$PROJECT/settings.py
