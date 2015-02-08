@@ -85,6 +85,18 @@ TEMPLATE_DEBUG = DEBUG"  >> $PROJECT/$PROJECT/local_settings-template.py
                     * ) echo "Please answer yes or no.";;
                 esac
             done
+
+            if [ ! -d .git ]; then
+                while true; do
+                    read -p "Set up git? [Y/n]" yn
+                    case $yn in
+                        "" ) git init .; git add .; git commit -am 'initial commit'; break;;
+                        [Yy]* ) git init .; git add .; git commit -am 'initial commit'; break;;
+                        [Nn]* ) break;;
+                        * ) echo "Please answer yes or no.";;
+                    esac
+                done
+            fi
     else
         echo "
 Copying local settings template
