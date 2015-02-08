@@ -82,6 +82,6 @@ somewhere and hope nothing breaks.
 ## Getting Started
 
 1. clone this repository
-2. update your `setup.sh` script's PROJECT variable to ^
+2. update your `setup.sh` script's PROJECT variable to...
 3. run `setup.sh`
 4. change your git remote to something else, dammit.
