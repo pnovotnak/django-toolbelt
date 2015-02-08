@@ -9,6 +9,9 @@
 *.sqlite
 *.sqlite3
 
+# Secret(s)
+*secret*
+
 # Python environment
 env/
 
