@@ -28,7 +28,7 @@ if [ ! -f $PROJECT/$PROJECT/local_settings.py ]; then
         sed -i '' '/SECRET_KEY/d' toolbelt/toolbelt/settings.py
 
         # set Debug = False by default
-        sed -i '' 's/DEBUG\ \=\ True/DEBUG\ \=\ False/' toolbelt/toolbelt/settings.py
+        sed -i '' 's/DEBUG\ \=\ True/DEBUG\ \=/\ False/' $PROJECT/$PROJECT/settings.py
 
         # local settings import, insert secret key generator
 echo "
