@@ -85,3 +85,28 @@ somewhere and hope nothing breaks.
 2. update your `setup.sh` script's PROJECT variable to...
 3. run `setup.sh`
 4. change your git remote to something else, dammit.
+
+## Next Steps
+
+To really utilize this little wingdinger to it's fullest potential, I find
+it's ideal to have a bash function in your .bashrc that reads something like...
+
+    function django() {
+        _FILE="/tmp/django-toolbelt-master.zip"
+        _DIR="/tmp/django-toolbelt-master"
+
+        pushd /tmp
+        rm $_FILE;
+        rm -r $_DIR;
+        curl -L https://github.com/pnovotnak/django-toolbelt/archive/master.zip \
+            > $_FILE;
+        unzip $_FILE;
+        popd
+
+        mv $_DIR "$(pwd)/$1";
+        cd $1
+
+        $EDITOR ./setup.sh
+        ./setup.sh
+    }
+
