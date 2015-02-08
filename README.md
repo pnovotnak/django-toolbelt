@@ -50,7 +50,8 @@ Then, somewhere along the line, you'll want to add
 
 Second, I find I like to have my Python environments initialized automatically.
 I don't have any idea what you clowns call your environment folder, I call mine
-`env`. Season to your wacky taste.
+`env`. Season to your wacky taste. I set `$h_c` and `$v_c` to something
+beautiful.
 
     _virtualenv_auto_activate() {
         if [ -e "env" ]; then
@@ -82,4 +83,7 @@ somewhere and hope nothing breaks.
 
 1. clone this repository
 2. run `setup.sh`
-3. run `
+    b. if you don't have the virtualenv bash trick from above installed, you'll
+    want to run `source env/bin/activate` now.
+3. run `django-admin.py startproject <some awesome name here>`
+4. fix your `setup.sh` script's PROJECT variable to ^
