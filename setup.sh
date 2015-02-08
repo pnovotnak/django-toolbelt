@@ -79,9 +79,9 @@ TEMPLATE_DEBUG = DEBUG"  >> $PROJECT/$PROJECT/local_settings-template.py
             while true; do
                 read -p "Should I run a syncdb for you? [Y/n]" yn
                 case $yn in
-                    ""*) $PROJECT/manage.py syncdb; break;;
+                    "" ) $PROJECT/manage.py syncdb; break;;
                     [Yy]* ) $PROJECT/manage.py syncdb; break;;
-                    [Nn]* ) exit;;
+                    [Nn]* ) break;;
                     * ) echo "Please answer yes or no.";;
                 esac
             done
@@ -98,9 +98,9 @@ echo
 while true; do
     read -p "May I start a development server for you? [Y/n]" yn
     case $yn in
-        ""*) $PROJECT/manage.py runserver; break;;
+        "" ) $PROJECT/manage.py runserver; break;;
         [Yy]* ) $PROJECT/manage.py runserver; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
